@@ -329,7 +329,9 @@ static int fimc_try_fmt_mplane(struct fimc_ctx *ctx, struct v4l2_format *f)
 	}
 
 	if (tiled_fmt(fmt)) {
-		mod_x = 6; /* 64 x 32 pixels tile */
+                /* We have 64 x 32 pixels tile, but the Z shape impose having
+                 * width at a multiple of 128 */
+		mod_x = 7;
 		mod_y = 5;
 	} else {
 		if (variant->min_vsize_align == 1)
