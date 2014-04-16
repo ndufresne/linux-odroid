@@ -1571,12 +1571,12 @@ int vb2_dqbuf(struct vb2_queue *q, struct v4l2_buffer *b, bool nonblocking)
 		return -EINVAL;
 	}
 
-	/* Fill buffer information for the userspace */
-	__fill_v4l2_buffer(vb, b);
 	/* Remove from videobuf queue */
 	list_del(&vb->queued_entry);
 	/* go back to dequeued state */
 	__vb2_dqbuf(vb);
+	/* Fill buffer information for the userspace */
+	__fill_v4l2_buffer(vb, b);
 
 	dprintk(1, "dqbuf of buffer %d, with state %d\n",
 			vb->v4l2_buf.index, vb->state);
