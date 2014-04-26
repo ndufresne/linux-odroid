@@ -113,6 +113,16 @@ enum s5p_mfc_fmt_type {
 };
 
 /**
+ * enum s5p_mfc_fmt_flag - flags marking which mfc revision support the format
+ */
+enum s5p_mfc_fmt_flag {
+	MFC_FMT_FLAG_NONE =      0,
+	MFC_FMT_FLAG_V5   = 1 << 0,
+	MFC_FMT_FLAG_V6   = 1 << 1,
+	MFC_FMT_FLAG_ALL  =   0xff,
+};
+
+/**
  * enum s5p_mfc_inst_type - The type of an MFC instance.
  */
 enum s5p_mfc_inst_type {
@@ -646,6 +656,7 @@ struct s5p_mfc_fmt {
 	u32 fourcc;
 	u32 codec_mode;
 	enum s5p_mfc_fmt_type type;
+	enum s5p_mfc_fmt_flag flags;
 	u32 num_planes;
 };
 
